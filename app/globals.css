@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f8f5;
+  --foreground: #20251f;
+  --surface: #ffffff;
+  --surface-muted: #eef1eb;
+  --border: #d8ded4;
+  --muted: #657064;
+  --accent: #286f5a;
+  --accent-strong: #1e5948;
+  --accent-soft: #dcece4;
+  --success: #2d7a50;
+  --warning: #9a681d;
+  --radius-card: 14px;
+  --radius-control: 10px;
 }
 
 @theme inline {
@@ -12,15 +23,141 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  outline-offset: 2px;
+}
+
+.ui-button {
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  display: inline-flex;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.625rem 1rem;
+  transition: background-color 160ms ease, border-color 160ms ease,
+    color 160ms ease;
+}
+
+.ui-button-primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.ui-button-primary:hover {
+  background: var(--accent-strong);
+}
+
+.ui-button-secondary {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.ui-button-secondary:hover {
+  background: var(--surface-muted);
+}
+
+.ui-button-ghost {
+  color: var(--accent-strong);
+}
+
+.ui-button-ghost:hover {
+  background: var(--accent-soft);
+}
+
+.ui-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 24px rgb(32 37 31 / 5%);
+  padding: 1.25rem;
+}
+
+.ui-input {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  color: var(--foreground);
+  min-height: 2.75rem;
+  padding: 0.625rem 0.75rem;
+  width: 100%;
+}
+
+.ui-input::placeholder {
+  color: var(--muted);
+}
+
+.ui-input:focus {
+  border-color: var(--accent);
+}
+
+.ui-badge {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.75rem;
+  font-weight: 600;
+  gap: 0.375rem;
+  line-height: 1;
+  padding: 0.45rem 0.625rem;
+}
+
+.ui-badge-neutral {
+  background: var(--surface-muted);
+  color: var(--muted);
+}
+
+.ui-badge-accent {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.ui-badge-success {
+  background: #e0f0e5;
+  color: var(--success);
+}
+
+.ui-badge-warning {
+  background: #f8edda;
+  color: var(--warning);
+}
+
+@media (max-width: 640px) {
+  .ui-card {
+    padding: 1rem;
+  }
+
+  .ui-button {
+    min-height: 2.625rem;
+  }
 }
